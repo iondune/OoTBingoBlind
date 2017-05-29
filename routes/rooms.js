@@ -21,7 +21,15 @@ router.get('/:roomId', function(req, res, next) {
   numRenders = numRenders + 1;
   console.log("rendered %d times", numRenders);
 
-  res.render('room', { title: 'Room ' + roomId, numRenders: numRenders, roomId: roomId });
+  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  console.log("fullUrl: %s", fullUrl)
+
+  res.render('room', {
+    title: 'Room ' + roomId,
+    numRenders: numRenders,
+    roomId: roomId,
+    roomUrl: fullUrl
+  });
 });
 
 module.exports = router;
