@@ -20,7 +20,6 @@
 <div class="container">
   <h1><%= title %></h1>
   <p>Welcome to <%= roomId %></p>
-  <p>Visited <%= numRenders %> times.</p>
   <p><a href="../../">Exit Room</a></p>
 
   <p>Room Link</p>
@@ -79,10 +78,14 @@
 
     var myColor = "orange";
 
+    function teamColor() {
+      return myColor + "square";
+    }
+
     var allColors = "greensquare redsquare orangesquare bluesquare purplesquare pinksquare";
 
     $(".square").click(function() {
-      var add_class = myColor + "square";
+      var add_class = teamColor();
 
       if ($(this).hasClass("blanksquare")) {
 
@@ -99,13 +102,42 @@
           error: function() {
             console.log( "error" );
 
-          }});
+        }});
       }
       else {
         $(this).removeClass(allColors);
         $(this).addClass("blanksquare");
       }
     });
+
+    function updateSquares() {
+      $.ajax({
+        type: "GET",
+        url: "/rooms/<%= roomId %>/list",
+        data: { "team": myColor },
+        success: function(data) {
+          $(".square").each(function() {
+
+            // unmark for all teams
+            $(this).removeClass(allColors);
+            $(this).addClass("blanksquare");
+
+            // own this square if it's ours
+            if ($.inArray(this.id, data.squares) != -1) {
+              $(this).removeClass("blanksquare");
+              $(this).addClass(teamColor());
+            }
+
+            // console.log("square: %s", this.id);
+            // console.log("%s", data.squares[0])
+          });
+        },
+        error: function() {
+          console.log( "error" );
+
+      }});
+
+    }
 
     var colorChoosers = $.find(".color-chooser");
     $(colorChoosers).on("click", function(ev) {
@@ -117,7 +149,11 @@
 
       $(colorChoosers).removeClass("chosen-color");
       $(this).addClass("chosen-color");
+
+      updateSquares();
     });
+
+    updateSquares();
 
   </script>
   </div>
