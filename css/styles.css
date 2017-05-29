@@ -1,0 +1,68 @@
+
+.square {
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  padding: 0 5px;
+  cursor: pointer;
+  width: 105px;
+  height: 95px;
+  text-align: center;
+  border: 1px #424242 solid;
+  background: #181818;
+
+  /* vertical-align changed to top so background colors wont be pushed halfway down */
+  vertical-align: top;
+
+  /* position needs to be relative for overflow hidden to work */
+  position: relative;
+  overflow: hidden;
+
+  margin: 10px;
+  float :left;
+}
+
+.clear {
+  clear: both;
+}
+
+.vertical-center {
+    /* set left and right to keep the width the same when changing to position: absolute */
+    left: 5px;
+    right: 5px;
+    /* position: absolute fixes vertical centering in chrome (when the containing td has verticle-align: top) */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+}
+
+.square:hover {
+  box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
+}
+
+.blanksquare:hover {
+  background: #0a245a;
+}
+
+.greensquare {
+    background-image: linear-gradient(#31D814, #00B500 60%, #20A00A);
+}
+
+.redsquare {
+    background-image: linear-gradient(#FF4944, #DA4440 60%, #CE302C);
+}
+
+.orangesquare {
+    background-image: linear-gradient(#FF9C12, #F98E1E 60%, #D0800F);
+}
+
+.bluesquare {
+    background-image: linear-gradient(#409CFF, #37A1DE 60%, #088CBD);
+}
+
+.purplesquare {
+    background-image: linear-gradient(#CF6BF5, #B038DC);
+}
