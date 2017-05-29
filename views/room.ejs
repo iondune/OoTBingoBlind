@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <title>OoT Tool</title>
-  <meta name="description" content="oot betaquest blind bingo">
+  <meta name="description" content="oot betaquest blind bingo lockout">
   <meta name="author" content="Ian Dunn">
 
   <link rel="stylesheet" href="/css/styles.css?v=1.0">
@@ -19,8 +19,12 @@
 <body>
 <div class="container">
   <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
+  <p>Welcome to <%= roomId %></p>
   <p>Visited <%= numRenders %> times.</p>
+  <p><a href="../../">Exit Room</a></p>
+
+  <p>Room Link</p>
+  <p><a href="http://topaz.iondune.net:3000/rooms/<%= roomId %>"><pre><code>http://topaz.iondune.net:3000/rooms/<%= roomId %></code></pre></a></p>
 
   <div id="squares">
   </div>
