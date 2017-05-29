@@ -8,8 +8,8 @@
   <meta name="description" content="oot betaquest blind bingo lockout">
   <meta name="author" content="Ian Dunn">
 
-  <link rel="stylesheet" href="/css/styles.css?v=1.0">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/styles.css?v=1.0">
 
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -25,6 +25,20 @@
 
   <p>Room Link</p>
   <p><a href="<%= roomUrl %>"><pre><code><%= roomUrl %></code></pre></a></p>
+
+
+  <div class="row">
+    <!-- space column -->
+    <div class="col-md-3"></div>
+    <div class="col-md-1 btn color-chooser orangesquare chosen-color" squareColor="orange">orange</div>
+    <div class="col-md-1 btn color-chooser redsquare" squareColor="red">red</div>
+    <div class="col-md-1 btn color-chooser bluesquare" squareColor="blue">blue</div>
+    <div class="col-md-1 btn color-chooser greensquare" squareColor="green">green</div>
+    <div class="col-md-1 btn color-chooser purplesquare" squareColor="purple">purple</div>
+    <div class="col-md-1 btn color-chooser pinksquare" squareColor="pink">pink</div>
+    <!-- space column -->
+    <div class="col-md-3"></div>
+  </div>
 
   <div id="squares">
   </div>
@@ -63,14 +77,22 @@
     // console.log("%O", cleanGoals);
     // console.log("%s", cleanGoals.toSource());
 
+    var myColor = "orange";
+
+    var allColors = "greensquare redsquare orangesquare bluesquare purplesquare pinksquare";
+
     $(".square").click(function() {
+      var add_class = myColor + "square";
+
       if ($(this).hasClass("blanksquare")) {
+
         $(this).removeClass("blanksquare");
-        $(this).addClass("greensquare");
+        $(this).addClass(add_class);
+
         $.ajax({
           type: "POST",
           url: "/rooms/<%= roomId %>/square",
-          data: { "event": "click", "id": this.id, "team": "green" },
+          data: { "event": "click", "id": this.id, "team": myColor },
           success: function(data) {
             console.log( "success " + data );
           },
@@ -80,9 +102,21 @@
           }});
       }
       else {
-        $(this).removeClass("greensquare");
+        $(this).removeClass(allColors);
         $(this).addClass("blanksquare");
       }
+    });
+
+    var colorChoosers = $.find(".color-chooser");
+    $(colorChoosers).on("click", function(ev) {
+      // don't do anything if the color is already the chosen color
+      if($(this).hasClass("chosen-color")) {
+          return;
+      }
+      myColor = $(this).attr("squareColor");
+
+      $(colorChoosers).removeClass("chosen-color");
+      $(this).addClass("chosen-color");
     });
 
   </script>

@@ -64,5 +64,24 @@
 }
 
 .purplesquare {
-    background-image: linear-gradient(#CF6BF5, #B038DC);
+    background-image: linear-gradient(#AF6BF5, #9038DC);
+}
+
+.pinksquare {
+    background-image: linear-gradient(#FF6Bd5, #D038cC);
+}
+
+.color-chooser {
+    color: #fff;
+}
+
+.color-chooser:hover {
+    box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: inset 0px 0px 50px rgba(0, 0, 0, 0.6);
+}
+
+.chosen-color,
+.chosen-color:hover {
+    border: solid 2px #222;
 }
