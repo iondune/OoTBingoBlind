@@ -54,7 +54,7 @@
       for (var j = 0; j < customList[group].length; ++ j) {
 
         var goal = customList[group][j];
-        $("#squares").append('<div class="square blanksquare"><div class="vertical-center">' + goal.name + '</div></div>');
+        $("#squares").append('<div class="square blanksquare" id="' + goal.id + '"><div class="vertical-center">' + goal.name + '</div></div>');
       }
 
       $("#squares").append('<div class="clear">');
@@ -67,6 +67,17 @@
       if ($(this).hasClass("blanksquare")) {
         $(this).removeClass("blanksquare");
         $(this).addClass("greensquare");
+        $.ajax({
+          type: "POST",
+          url: "/rooms/<%= roomId %>/square",
+          data: { "event": "click", "id": this.id, "team": "green" },
+          success: function(data) {
+            console.log( "success " + data );
+          },
+          error: function() {
+            console.log( "error" );
+
+          }});
       }
       else {
         $(this).removeClass("greensquare");
