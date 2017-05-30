@@ -107,6 +107,18 @@
       else {
         $(this).removeClass(allColors);
         $(this).addClass("blanksquare");
+
+        $.ajax({
+          type: "POST",
+          url: "/rooms/<%= roomId %>/square",
+          data: { "event": "unclick", "id": this.id, "team": myColor },
+          success: function(data) {
+            console.log( "success " + data );
+          },
+          error: function() {
+            console.log( "error" );
+
+        }});
       }
     });
 
