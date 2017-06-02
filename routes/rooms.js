@@ -93,15 +93,45 @@ router.post('/:roomId/square', function(req, res) {
 
     doc.teams = doc.teams || {};
     doc.teams[team] = doc.teams[team] || [];
+    doc.squares = doc.squares || {};
+    doc.squares[square] = doc.squares[square] || "unmarked";
 
     if (event == "click") {
       doc.teams[team].push(square);
+
+      if (doc.squares[square] === "unmarked") {
+        doc.squares[square] = team;
+      }
     }
     else if (event == "unclick") {
       doc.teams[team] = doc.teams[team].filter(function(arg) { return arg != square; });
+
+      doc.squares[square] = "unmarked";
+
+      for (var otherTeam in doc.teams) {
+        if (doc.teams.hasOwnProperty(otherTeam)) {
+          if (team != otherTeam) {
+            for (var i = 0; i < doc.teams[otherTeam].length; ++ i) {
+              if (doc.teams[otherTeam][i] == square) {
+                if (doc.squares[square] === "unmarked") {
+                  console.log("square forfeited by %s and given to %s: %s", team, otherTeam, square);
+                  doc.squares[square] = otherTeam;
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
     doc.teams[team] = uniq(doc.teams[team]);
+    for (var field in doc.squares) {
+      if (doc.squares.hasOwnProperty(field)) {
+        if (doc.squares[field] == "unmarked") {
+          delete doc.squares[field];
+        }
+      }
+    }
     collection.update({ name: roomId }, doc);
   });
 
