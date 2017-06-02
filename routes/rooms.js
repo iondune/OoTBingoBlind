@@ -17,7 +17,7 @@ function uniq(a) {
 /* create new room */
 router.get('/', function(req, res, next) {
   var roomId = bs58.encode(crypto.randomBytes(3*4));
-  res.redirect(req.originalUrl + '/' + roomId);
+  res.redirect('/rooms/' + roomId);
 });
 
 
@@ -42,6 +42,7 @@ router.get('/:roomId', function(req, res, next) {
     roomId: roomId,
     roomUrl: fullUrl
   });
+
 });
 
 
@@ -139,3 +140,32 @@ router.post('/:roomId/square', function(req, res) {
 });
 
 module.exports = router;
+
+
+/*  */
+router.get('/:roomId/results', function(req, res, next) {
+
+  var roomId = req.params.roomId;
+  var team = req.query.team;
+
+  var db = req.db;
+  var collection = db.get('rooms');
+
+  collection.findOne({ name: roomId }).then((doc) => {
+
+    if (doc === null) {
+      console.log("could not find that rooms.");
+      res.sendStatus(404);
+    }
+    else {
+      doc.squares = doc.squares || {};
+
+      res.render('results', {
+        title: 'Room ' + roomId,
+        roomId: roomId,
+        squares: doc.squares
+      });
+    }
+
+  });
+});
