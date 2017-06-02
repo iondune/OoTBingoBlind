@@ -5,6 +5,7 @@ var router = express.Router();
 var crypto = require('crypto');
 var bs58 = require('bs58');
 
+
 /* utils */
 function uniq(a) {
   var seen = {};
