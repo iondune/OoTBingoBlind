@@ -1,4 +1,9 @@
 
+/* Bingo Squares
+---------------------------------------------------------------------------- */
+
+/* thanks to @kbuzsaki */
+
 .square {
   color: #fff;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
@@ -86,9 +91,43 @@
     border: solid 2px #fff;
 }
 
+
+
+/* Theme
+---------------------------------------------------------------------------- */
+
 pre code a {
   color: #333;
 }
 pre code a:hover {
   color: #555;
+}
+
+
+/* Sticky footer styles
+---------------------------------------------------------------------------- */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #212529;
+}
+
+.footer > .container {
+  padding-top: 20px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
