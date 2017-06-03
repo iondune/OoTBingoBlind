@@ -1,22 +1,48 @@
 <%- include header.ejs %>
 
-  <h1><%= title %> Results</h1>
-  <p><%= roomId %></p>
-  <p><a href="/rooms/<%= roomId %>">Back To Room</a></p>
+  <h1><%= title %></h1>
+  <p><a href="/rooms/<%= roomId %>" class="btn btn-default">Back To Room</a></p>
+
+  <h2>Results</h2>
+
 
   <div id="squares">
-    <ul>
+
     <% for (var field in squares) { %>
       <% if (squares.hasOwnProperty(field)) { %>
-        <li><%= field %> - <%= squares[field] %></li>
+
+        <div class="square <%= squares[field] %>square" id="<%= field %>">
+        </div>
+
       <% } %>
     <% } %>
-    </ul>
 
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="/js/oot_beautify.js"></script>
   <script src="/js/custom_list.js"></script>
+
+
+  <script>
+    var groups = [];
+
+    for (var property in customList) {
+      if (customList.hasOwnProperty(property)) {
+        groups.push(property);
+      }
+    }
+
+    for (var i = 0; i < groups.length; ++ i) {
+
+      var group = groups[i];
+
+      for (var j = 0; j < customList[group].length; ++ j) {
+
+        var goal = customList[group][j];
+        $("#" + goal.id).append('<div class="vertical-center">' + goal.name + '</div>');
+      }
+    }
+  </script>
 
 <%- include footer.ejs %>
