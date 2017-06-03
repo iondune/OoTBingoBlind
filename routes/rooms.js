@@ -103,12 +103,17 @@ router.post('/:roomId/square', function(req, res) {
 
       if (doc.squares[square] === "unmarked") {
         doc.squares[square] = team;
+        console.log("########## square claimed by %s: %s", team, square);
+      }
+      else {
+        console.log("########## square marked by %s but was already claimed: %s", team, square);
       }
     }
     else if (event == "unclick") {
       doc.teams[team] = doc.teams[team].filter(function(arg) { return arg != square; });
 
       doc.squares[square] = "unmarked";
+      console.log("########## square unmarked by %s: %s", team, square);
 
       for (var otherTeam in doc.teams) {
         if (doc.teams.hasOwnProperty(otherTeam)) {
@@ -116,7 +121,7 @@ router.post('/:roomId/square', function(req, res) {
             for (var i = 0; i < doc.teams[otherTeam].length; ++ i) {
               if (doc.teams[otherTeam][i] == square) {
                 if (doc.squares[square] === "unmarked") {
-                  console.log("square forfeited by %s and given to %s: %s", team, otherTeam, square);
+                  console.log("########## square forfeited by %s and given to %s: %s", team, otherTeam, square);
                   doc.squares[square] = otherTeam;
                 }
               }
