@@ -1,0 +1,5 @@
+apps:
+  - name: "oot-tool"
+    script: "./bin/www"
+    env:
+      PORT: 2489
