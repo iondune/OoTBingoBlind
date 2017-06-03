@@ -83,5 +83,12 @@
 
 .chosen-color,
 .chosen-color:hover {
-    border: solid 2px #222;
+    border: solid 2px #fff;
+}
+
+pre code a {
+  color: #333;
+}
+pre code a:hover {
+  color: #555;
 }

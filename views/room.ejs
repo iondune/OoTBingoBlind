@@ -1,26 +1,43 @@
 <%- include header.ejs %>
 
   <h1><%= title %></h1>
-  <p>Welcome to <%= roomId %></p>
-  <p><a href="/">Exit Room</a></p>
-  <p><a href="/rooms/<%= roomId %>/results">Room Results</a></p>
 
-  <p>Room Link</p>
-  <p><a href="<%= roomUrl %>"><pre><code><%= roomUrl %></code></pre></a></p>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Room Info</h3>
+    </div>
+    <div class="panel-body">
+      <p>
+        <a href="/" class="btn btn-default">Exit Room</a>
+        <a href="/rooms/<%= roomId %>/results" class="btn btn-primary">Room Results</a>
+      </p>
 
-
-  <div class="row">
-    <!-- space column -->
-    <div class="col-md-3"></div>
-    <div class="col-md-1 btn color-chooser orangesquare chosen-color" squareColor="orange">orange</div>
-    <div class="col-md-1 btn color-chooser redsquare" squareColor="red">red</div>
-    <div class="col-md-1 btn color-chooser bluesquare" squareColor="blue">blue</div>
-    <div class="col-md-1 btn color-chooser greensquare" squareColor="green">green</div>
-    <div class="col-md-1 btn color-chooser purplesquare" squareColor="purple">purple</div>
-    <div class="col-md-1 btn color-chooser pinksquare" squareColor="pink">pink</div>
-    <!-- space column -->
-    <div class="col-md-3"></div>
+      <p>Room Link</p>
+      <p><pre><code><a href="<%= roomUrl %>"><%= roomUrl %></a></code></pre></p>
+    </div>
   </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Color Chooser</div>
+    <div class="panel-body">
+      <div class="row">
+        <!-- space column -->
+        <div class="col-sm-3"></div>
+        <div class="col-sm-1 btn color-chooser orangesquare chosen-color" squareColor="orange">orange</div>
+        <div class="col-sm-1 btn color-chooser redsquare" squareColor="red">red</div>
+        <div class="col-sm-1 btn color-chooser bluesquare" squareColor="blue">blue</div>
+        <div class="col-sm-1 btn color-chooser greensquare" squareColor="green">green</div>
+        <div class="col-sm-1 btn color-chooser purplesquare" squareColor="purple">purple</div>
+        <div class="col-sm-1 btn color-chooser pinksquare" squareColor="pink">pink</div>
+        <!-- space column -->
+        <div class="col-sm-3"></div>
+      </div>
+    </div>
+  </div>
+
+
+
 
   <div id="squares">
   </div>
