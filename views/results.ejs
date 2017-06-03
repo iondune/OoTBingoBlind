@@ -8,13 +8,21 @@
 
   <div id="squares">
 
+    <% var claimedGoals = 0; %>
+
     <% for (var field in squares) { %>
       <% if (squares.hasOwnProperty(field)) { %>
 
         <div class="square <%= squares[field] %>square" id="<%= field %>">
         </div>
 
+        <% claimedGoals++; %>
+
       <% } %>
+    <% } %>
+
+    <% if (claimedGoals == 0) { %>
+      <p class="text-primary">No goals claimed.</p>
     <% } %>
 
   </div>
