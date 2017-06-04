@@ -48,6 +48,7 @@ module.exports = {
       {name:"Defeat Volvagia", id:"defeat-volvagia", difficulty:17},
       {name:"Defeat Meg (purple Poe)", id:"defeat-meg-purple-poe-", difficulty:19},
       {name:"Defeat 4 Different Iron Knuckles", id:"defeat-4-different-iron-knuckles", difficulty:23},
+      {name:"Defeat Twinrova", id:"defeat-twinrova", difficulty:25},
 
       {name:"Beat the Deku Tree", id:"beat-the-deku-tree", difficulty:7},
       {name:"Beat the Forest Temple", id:"beat-the-forest-temple", difficulty:7},
@@ -56,6 +57,7 @@ module.exports = {
       {name:"Beat the Shadow Temple", id:"beat-the-shadow-temple", difficulty:12},
       {name:"Beat Jabu-Jabu's Belly", id:"beat-jabu-jabu-s-belly", difficulty:17},
       {name:"Beat the Fire Temple", id:"beat-the-fire-temple", difficulty:18},
+      {name:"Beat the Spirit Temple", id:"beat-the-spirit-temple", difficulty:25},
 
       {name:"Forest Medallion", id:"forest-medallion", difficulty:7},
       {name:"Water Medallion", id:"water-medallion", difficulty:9},
@@ -66,6 +68,7 @@ module.exports = {
       {name:"Get to the end of Spirit Trial", id:"get-to-the-end-of-spirit-trial", difficulty:20},
       {name:"Get to the end of Water Trial", id:"get-to-the-end-of-water-trial", difficulty:20},
       {name:"Get to the end of Shadow Trial", id:"get-to-the-end-of-shadow-trial", difficulty:22},
+      {name:"Get to the end of Forest Trial", id:"get-to-the-end-of-forest-trial", difficulty:25},
     ]],
     ['Equipment', [
       {name:"Giant's Knife", id:"giant-s-knife", difficulty:1},
@@ -81,6 +84,7 @@ module.exports = {
       {name:"3 Swords & 3 Shields", id:"3-swords-3-shields", difficulty:17},
       {name:"3 Shields & 3 Boots", id:"3-shields-3-boots", difficulty:23},
       {name:"3 Shields & 3 Tunics", id:"3-shields-3-tunics", difficulty:20},
+      {name: "3 Swords, Tunics, Boots, and Shields", id: "3-swords-tunics-boots-and-shields", difficulty:25},
     ]],
     ['Inventory', [
       {name:"Lens of Truth", id:"lens-of-truth", difficulty:1},
@@ -97,6 +101,7 @@ module.exports = {
       {name:"Mirror Shield", id:"mirror-shield", difficulty:15},
       {name:"Light Arrows", id:"light-arrows", difficulty:18},
       {name:"Spooky Mask", id:"spooky-mask", difficulty:18},
+      {name:"All 3 Elemental Arrows", id:"all-3-elemental-arrows", difficulty:25},
     ]],
     ['Dungeons', [
       {name:"Map & Compass in Bottom of the Well", id:"map-compass-in-bottom-of-the-well", difficulty:1},
@@ -160,6 +165,7 @@ module.exports = {
       {name:"7 Hearts", id:"7-hearts", difficulty:11},
       {name:"8 Hearts", id:"8-hearts", difficulty:17},
       {name:"9 Hearts", id:"9-hearts", difficulty:23},
+      {name:"10 Hearts", id:"10-hearts", difficulty:25},
       {name:"Both HPs in Death Mountain Crater", id:"both-hps-in-death-mountain-crater", difficulty:3},
       {name:"Lon Lon Ranch HP", id:"lon-lon-ranch-hp", difficulty:3},
       {name:"Both Gerudo Valley HPs", id:"both-gerudo-valley-hps", difficulty:5},
@@ -213,6 +219,7 @@ module.exports = {
       {name:"Farore's Wind", id:"farore-s-wind", difficulty:15},
       {name:"Din's Fire", id:"din-s-fire", difficulty:19},
       {name:"Nayru's Love", id:"nayru-s-love", difficulty:21},
+      {name:"Two Fairy Spells", id:"two-fairy-spells", difficulty:25},
     ]],
   ],
   idMap: function(goals) {
