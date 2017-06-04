@@ -38,6 +38,18 @@
         <!-- space column -->
         <div class="col-sm-3"></div>
       </div>
+      <div class="row">
+        <!-- space column -->
+        <div class="col-sm-3"></div>
+        <div class="col-sm-1 btn color-chooser goldsquare" squareColor="gold">gold</div>
+        <div class="col-sm-1 btn color-chooser tealsquare" squareColor="teal">teal</div>
+        <div class="col-sm-1 btn color-chooser limesquare" squareColor="lime">lime</div>
+        <div class="col-sm-1 btn color-chooser navysquare" squareColor="navy">navy</div>
+        <div class="col-sm-1 btn color-chooser whitesquare" squareColor="white">white</div>
+        <div class="col-sm-1 btn color-chooser blacksquare" squareColor="black">black</div>
+        <!-- space column -->
+        <div class="col-sm-3"></div>
+      </div>
     </div>
   </div>
 
@@ -76,6 +88,7 @@
     }
 
     var allColors = "greensquare redsquare orangesquare bluesquare purplesquare pinksquare";
+    allColors += " goldsquare tealsquare limesquare navysquare whitesquare blacksquare"
 
     $(".square").click(function() {
       var add_class = teamColor();
