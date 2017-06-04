@@ -5,6 +5,8 @@ var router = express.Router();
 var crypto = require('crypto');
 var bs58 = require('bs58');
 
+var goals = require('../helpers/goals');
+
 
 /* utils */
 function uniq(a) {
@@ -41,7 +43,8 @@ router.get('/:roomId', function(req, res, next) {
   res.render('room', {
     title: 'Room ' + roomId,
     roomId: roomId,
-    roomUrl: fullUrl
+    roomUrl: fullUrl,
+    goals: goals.info
   });
 
 });
@@ -145,10 +148,8 @@ router.post('/:roomId/square', function(req, res) {
   res.sendStatus(200);
 });
 
-module.exports = router;
 
-
-/*  */
+/* Results page */
 router.get('/:roomId/results', function(req, res, next) {
 
   var roomId = req.params.roomId;
@@ -175,3 +176,5 @@ router.get('/:roomId/results', function(req, res, next) {
 
   });
 });
+
+module.exports = router;
