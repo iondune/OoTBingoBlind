@@ -56,13 +56,36 @@
           return type + ' ' + styleGoal(goal);
         }
       }
+
+      function historyIcon(type) {
+        var icon = "minus";
+
+        if (type == 'marked') {
+          icon = "ok";
+        }
+        else if (type == 'too-late') {
+          icon = "time";
+        }
+        else if (type == 'unmarked') {
+          icon = "remove";
+        }
+        else if (type == 'transferred') {
+          icon = "arrow-right";
+        }
+
+        return '<span class="glyphicon glyphicon-' + icon + '" aria-hidden="true"></span>';
+      }
     %>
     <% for (var i = 0; i < history.length; ++ i) { %>
-      <li class="history">At <%= history[i].time %>, <span class="<%= history[i].player %> history-player"><%= history[i].player %></span>
+      <li class="history">
+        <%- historyIcon(history[i].type) %>
+        At <%= history[i].time %>, <span class="<%= history[i].player %> history-player"><%= history[i].player %></span>
         <%- formatHistory(history[i].desc, history[i].type) %>
       </li>
     <% } %>
   </ul>
+
+  <div style="margin-bottom: 50px;"></div>
 
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

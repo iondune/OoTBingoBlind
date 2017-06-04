@@ -128,7 +128,8 @@
 }
 
 li.history {
-  margin-bottom: 3px;
+  list-style-type: none;
+  margin-bottom: 6px;
 }
 
 
