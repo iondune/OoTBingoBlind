@@ -26,7 +26,44 @@
       <p class="text-primary">No goals claimed.</p>
     <% } %>
 
+    <div class="clear"></div>
+
   </div>
+
+
+  <h2>History</h2>
+
+  <ul>
+    <%
+      function styleGoal(goal) {
+        return '<span class="history-goal">' + goal + '</span>';
+      }
+
+      function formatHistory(goal, type) {
+        if (type == 'marked') {
+          return 'marked ' + styleGoal(goal);
+        }
+        else if (type == 'too-late') {
+          return 'marked ' + styleGoal(goal) + ' but it was already claimed';
+        }
+        else if (type == 'unmarked') {
+          return 'unmarked ' + styleGoal(goal);
+        }
+        else if (type == 'transferred') {
+          return 'earned ' + styleGoal(goal) + ' because it was unmarked by another player.';
+        }
+        else {
+          return type + ' ' + styleGoal(goal);
+        }
+      }
+    %>
+    <% for (var i = 0; i < history.length; ++ i) { %>
+      <li class="history">At <%= history[i].time %>, <span class="<%= history[i].player %> history-player"><%= history[i].player %></span>
+        <%- formatHistory(history[i].desc, history[i].type) %>
+      </li>
+    <% } %>
+  </ul>
+
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 

@@ -76,6 +76,30 @@
     background-image: linear-gradient(#FF6Bd5, #D038cC);
 }
 
+.green {
+    color: #31D814;
+}
+
+.red {
+    color: #FF4944;
+}
+
+.orange {
+    color: #FF9C12;
+}
+
+.blue {
+    color: #409CFF;
+}
+
+.purple {
+    color: #AF6BF5;
+}
+
+.pink {
+    color: #FF6Bd5;
+}
+
 .color-chooser {
     color: #fff;
 }
@@ -91,6 +115,21 @@
     border: solid 2px #fff;
 }
 
+
+/* History
+---------------------------------------------------------------------------- */
+
+.history-player {
+  font-weight: bold;
+}
+
+.history-goal {
+  font-weight: bold;
+}
+
+li.history {
+  margin-bottom: 3px;
+}
 
 
 /* Theme

@@ -4,6 +4,7 @@ var router = express.Router();
 
 var crypto = require('crypto');
 var bs58 = require('bs58');
+var moment = require('moment');
 
 var goals = require('../helpers/goals');
 
@@ -21,6 +22,9 @@ function dateString() {
   return d.toString();
 }
 
+function timeString() {
+  return moment().utcOffset('-05:00').format('LTS');
+}
 
 /* create new room */
 router.get('/', function(req, res, next) {
@@ -105,6 +109,7 @@ router.post('/:roomId/square', function(req, res) {
     doc.teams[team] = doc.teams[team] || [];
     doc.squares = doc.squares || {};
     doc.squares[square] = doc.squares[square] || "unmarked";
+    doc.history = doc.history || [];
 
     if (event == "click") {
       doc.teams[team].push(square);
@@ -112,9 +117,23 @@ router.post('/:roomId/square', function(req, res) {
       if (doc.squares[square] === "unmarked") {
         doc.squares[square] = team;
         console.log("########## square claimed by %s: %s @ <%s> [room %s]", team, square, dateString(), roomId);
+        doc.history.push({
+          type: 'marked',
+          time: timeString(),
+          square: square,
+          desc: goals.idMap(goals.info)[square],
+          player: team
+        });
       }
       else {
         console.log("########## square marked by %s but was already claimed: %s @ <%s> [room %s]", team, square, dateString(), roomId);
+        doc.history.push({
+          type: 'too-late',
+          time: timeString(),
+          square: square,
+          desc: goals.idMap(goals.info)[square],
+          player: team
+        });
       }
     }
     else if (event == "unclick") {
@@ -122,6 +141,13 @@ router.post('/:roomId/square', function(req, res) {
 
       doc.squares[square] = "unmarked";
       console.log("########## square unmarked by %s: %s @ <%s> [room %s]", team, square, dateString(), roomId);
+        doc.history.push({
+          type: 'unmarked',
+          time: timeString(),
+          square: square,
+          desc: goals.idMap(goals.info)[square],
+          player: team
+        });
 
       for (var otherTeam in doc.teams) {
         if (doc.teams.hasOwnProperty(otherTeam)) {
@@ -131,6 +157,13 @@ router.post('/:roomId/square', function(req, res) {
                 if (doc.squares[square] === "unmarked") {
                   console.log("########## square forfeited by %s and given to %s: %s @ <%s> [room %s]", team, otherTeam, square, dateString(), roomId);
                   doc.squares[square] = otherTeam;
+                  doc.history.push({
+                    type: 'transferred',
+                    time: timeString(),
+                    square: square,
+                    desc: goals.idMap(goals.info)[square],
+                    player: otherTeam
+                  });
                 }
               }
             }
@@ -147,6 +180,7 @@ router.post('/:roomId/square', function(req, res) {
         }
       }
     }
+
     collection.update({ name: roomId }, doc);
   });
 
@@ -176,6 +210,7 @@ router.get('/:roomId/results', function(req, res, next) {
         title: 'Room ' + roomId,
         roomId: roomId,
         squares: doc.squares,
+        history: doc.history,
         goalsMap: goals.idMap(goals.info)
       });
     }
