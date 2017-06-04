@@ -214,5 +214,23 @@ module.exports = {
       {name:"Din's Fire", id:"din-s-fire", difficulty:19},
       {name:"Nayru's Love", id:"nayru-s-love", difficulty:21},
     ]],
-  ]
+  ],
+  idMap: function(goals) {
+
+    var map = {};
+
+    for (var i = 0; i < goals.length; ++ i) {
+      var group = goals[i];
+      var groupName = group[0];
+      var goalList = group[1];
+
+      for (var j = 0; j < goalList.length; ++ j) {
+        var goal = goalList[j];
+        map[goal.id] = goal.name;
+      }
+    }
+
+    return map;
+
+  }
 };

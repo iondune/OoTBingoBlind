@@ -62,7 +62,7 @@ router.get('/:roomId/list', function(req, res, next) {
   collection.findOne({ name: roomId }).then((doc) => {
 
     if (doc === null) {
-      console.log("could not find that rooms.");
+      console.log("could not find room: %s", roomId);
       res.sendStatus(404);
     }
     else {
@@ -161,7 +161,7 @@ router.get('/:roomId/results', function(req, res, next) {
   collection.findOne({ name: roomId }).then((doc) => {
 
     if (doc === null) {
-      console.log("could not find that rooms.");
+      console.log("could not find room: %s", roomId);
       res.sendStatus(404);
     }
     else {
@@ -170,7 +170,8 @@ router.get('/:roomId/results', function(req, res, next) {
       res.render('results', {
         title: 'Room ' + roomId,
         roomId: roomId,
-        squares: doc.squares
+        squares: doc.squares,
+        goalsMap: goals.idMap(goals.info)
       });
     }
 

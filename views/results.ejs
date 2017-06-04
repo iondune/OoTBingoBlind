@@ -14,6 +14,7 @@
       <% if (squares.hasOwnProperty(field)) { %>
 
         <div class="square <%= squares[field] %>square" id="<%= field %>">
+          <div class="vertical-center"><%= goalsMap[field] %></div>
         </div>
 
         <% claimedGoals++; %>
@@ -28,29 +29,5 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="/js/oot_beautify.js"></script>
-  <script src="/js/custom_list.js"></script>
-
-
-  <script>
-    var groups = [];
-
-    for (var property in customList) {
-      if (customList.hasOwnProperty(property)) {
-        groups.push(property);
-      }
-    }
-
-    for (var i = 0; i < groups.length; ++ i) {
-
-      var group = groups[i];
-
-      for (var j = 0; j < customList[group].length; ++ j) {
-
-        var goal = customList[group][j];
-        $("#" + goal.id).append('<div class="vertical-center">' + goal.name + '</div>');
-      }
-    }
-  </script>
 
 <%- include footer.ejs %>
